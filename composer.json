@@ -1,0 +1,29 @@
+{
+  "name": "kodegrenade/naija-faker-laravel",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Temitope Ayotunde",
+      "email": "brhamix@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Kodegrenade\\NaijaFaker\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Kodegrenade\\NaijaFaker\\NaijaFakerServiceProvider"
+      ],
+      "aliases": {
+        "NaijaFaker": "Kodegrenade\\NaijaFaker\\NaijaFaker"
+      }
+    }
+  },
+  "require": {},
+  "description": "A simple package that generates fake typical Nigerian data."
+}
