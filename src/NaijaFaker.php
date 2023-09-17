@@ -6,7 +6,7 @@ namespace Kodgrenade\NaijaFaker;
 function customAutoloader($className)
 {
   $classMap = [
-    'Kodegrenade\NaijaFaker\Library\Library' => './src/Library/Library.php',
+    'Kodegrenade\NaijaFaker\Library\Library' => './Library/Library.php',
   ];
 
   if (isset($classMap[$className])) {
