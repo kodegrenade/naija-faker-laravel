@@ -39,7 +39,7 @@ class NaijaFaker
   /**
    * @param {Object} options
    */
-  static function config()
+  public static function config()
   {
     # Load configuration data from config file
   }
@@ -52,7 +52,7 @@ class NaijaFaker
    * 
    * @return string
    */
-  static function name(string $language = null, string $gender = null): string
+  public static function name(string $language = null, string $gender = null): string
   {
     $fullName = "";
 
@@ -118,7 +118,7 @@ class NaijaFaker
    * 
    * @return array
    */
-  static function people(int $number = 5, string $language = null, string $gender = null): array
+  public static function people(int $number = 5, string $language = null, string $gender = null): array
   {
     if ($number && !is_int($number)) {
       throw new \Exception("Value for number must be type of integer.");
@@ -147,7 +147,7 @@ class NaijaFaker
    * 
    * @return string
    */
-  static function title(string $gender = null): string
+  public static function title(string $gender = null): string
   {
     if (!in_array(strtolower($gender), self::DEFAULT_GENDER)) {
       $gender = self::DEFAULT_GENDER[array_rand(self::DEFAULT_GENDER)];
@@ -167,7 +167,7 @@ class NaijaFaker
    * 
    * @return string
    */
-  static function email(string $name, string $extension = null): string
+  public static function email(string $name, string $extension = null): string
   {
     # do regex for custome extension to either be in the following format @name.com || name.com
     if (!$name) {
@@ -189,7 +189,7 @@ class NaijaFaker
    * 
    * @return string
    */
-  static function address(): string
+  public static function address(): string
   {
     $loadLibrary = Library::getLibraryData("address");
 
@@ -218,7 +218,7 @@ class NaijaFaker
    * 
    * @return string
    */
-  static function phoneNumber(string $network = null): string
+  public static function phoneNumber(string $network = null): string
   {
     $network = strtolower($network);
     if (!in_array($network, self::DEFAULT_NETWORKS)) {
@@ -241,7 +241,7 @@ class NaijaFaker
    * 
    * @return array
    */
-  static function states(): array
+  public static function states(): array
   {
     $loadLibrary = Library::getLibraryData("states");
     return $loadLibrary;
@@ -252,7 +252,7 @@ class NaijaFaker
    * 
    * @return array
    */
-  static function lgas(): array
+  public static function lgas(): array
   {
     $loadLibrary = Library::getLibraryData("lgas");
     return $loadLibrary;
