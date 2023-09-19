@@ -74,7 +74,7 @@ NaijaFaker::person(string $language, string $sex);
 * `$language`: The language of the fake person's data to be generated.
 * `$sex`: The gender of the person's data to be generate.
 
-## Sample
+#### Sample
 ```php
 <?php
 
