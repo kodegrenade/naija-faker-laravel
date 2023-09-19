@@ -1,4 +1,4 @@
-# Laravel NaijaFaker ▲
+# Laravel NaijaFaker
 
 ## Introduction 🖖
 
