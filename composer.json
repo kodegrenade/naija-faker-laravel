@@ -1,5 +1,14 @@
 {
   "name": "kodegrenade/naija-faker-laravel",
+  "keywords": [
+    "php",
+    "github",
+    "laravel",
+    "faker",
+    "naija-faker",
+    "package",
+    "Open Source"
+  ],
   "type": "library",
   "license": "MIT",
   "authors": [

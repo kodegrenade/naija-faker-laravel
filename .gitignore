@@ -1,1 +1,5 @@
 .idea/
+vendor
+.DS_Store
+composer.lock
+build

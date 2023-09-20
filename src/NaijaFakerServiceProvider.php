@@ -25,6 +25,6 @@ class NaijaFakerServiceProvider extends ServiceProvider
   {
     $this->commands([
       \Kodegrenade\NaijaFaker\Commands\FakerGenerator::class
-    ])
+    ]);
   }
 }
