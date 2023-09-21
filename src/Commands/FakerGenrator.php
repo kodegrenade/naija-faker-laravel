@@ -1,9 +1,9 @@
 <?php
 
-namespace Kodgrenade\NaijaFaker\Commands;
+namespace Kodegrenade\NaijaFaker\Commands;
 
 use Illuminate\Console\Command;
-use Kodgrenade\NaijaFaker\NaijaFaker;
+use Kodegrenade\NaijaFaker\NaijaFaker;
 
 class FakerGenerator extends Command
 {
@@ -36,7 +36,7 @@ class FakerGenerator extends Command
    * 
    * @return int
    */
-  public function handle()
+  public function handle(): int
   {
     try {
       $generate = NaijaFaker::person();

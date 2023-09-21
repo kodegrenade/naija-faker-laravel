@@ -1,27 +1,20 @@
 <?php
 
-namespace Kodgrenade\NaijaFaker;
+/*
+ * This file is part of the Laravel NaijaFaker package.
+ *
+ * (c) Temitope Ayotunde <brhamix@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+*/
 
-// Define a custom autoloader function
-function customAutoloader($className)
-{
-  $classMap = [
-    'Kodegrenade\NaijaFaker\Library\Library' => './Library/Library.php',
-  ];
-
-  if (isset($classMap[$className])) {
-    require $classMap[$className];
-  }
-}
-
-// Register the custom autoloader
-// customAutoloader('Kodegrenade\Naija\Library\Library');
-spl_autoload_register(customAutoloader('Kodegrenade\NaijaFaker\Library\Library'));
+namespace Kodegrenade\NaijaFaker;
 
 use Illuminate\Support\Facades\Facade;
 use Kodegrenade\NaijaFaker\Library\Library;
 
-class NaijaFaker
+class NaijaFaker extends Facade
 {
   private const DEFAULT_LANGUAGES = ['yoruba', 'igbo', 'hausa'];
   private const DEFAULT_GENDER = ['male', 'female'];
@@ -174,12 +167,14 @@ class NaijaFaker
       throw new \Exception("Name is not provided.");
     }
 
+    if ($extension) $extension = preg_replace('/[^.a-zA-Z0-9]/', '', $extension);
+
     $loadLibrary = Library::getLibraryData("extensions");
     $pickDomain = array_rand($loadLibrary);
-    $domain = $loadLibrary[$pickDomain];
+    $domain = ($extension) ? '@' . $extension : $extension ?? $loadLibrary[$pickDomain];
 
     $separator = self::DEFAULT_SEPARATORS[array_rand(self::DEFAULT_SEPARATORS)];
-    $name = preg_replace('/[^A-Z0-9]+/i', $separator, strtolower($name));
+    $name = preg_replace('/[^a-zA-Z0-9]+/i', $separator, strtolower($name));
 
     return "{$name}{$domain}";
   }
@@ -258,6 +253,3 @@ class NaijaFaker
     return $loadLibrary;
   }
 }
-
-$test = NaijaFaker::people(5, "yoruba", "male");
-print_r($test);

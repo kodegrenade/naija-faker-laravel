@@ -33,6 +33,17 @@
       }
     }
   },
-  "require": {},
-  "description": "A simple package that generates fake typical Nigerian data."
+  "description": "A simple package that generates fake typical Nigerian data.",
+  "require-dev": {
+    "phpunit/phpunit": "^10.4@dev",
+    "illuminate/support": "^11.0@dev"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Kodegrenade\\NaijaFaker\\Test\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  }
 }
