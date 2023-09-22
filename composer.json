@@ -56,7 +56,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/kodegrenade/naija-faker-laravel"
+      "url": "https://github.com/kodegrenade/naija-faker-laravel.git"
     }
   ]
 }
