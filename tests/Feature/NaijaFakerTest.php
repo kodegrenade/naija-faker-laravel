@@ -3,7 +3,7 @@
 use Kodegrenade\NaijaFaker\NaijaFaker;
 
 test('name without params', function () {
-    $name = NaijaFaker::name(null, null);
+    $name = NaijaFaker::name();
     expect($name)->toBeString();
 });
 
