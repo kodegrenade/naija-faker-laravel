@@ -382,6 +382,10 @@ php artisan faker:generator
 ```bash
 composer test tests
 ```
+
+# Disclaimer :caution:
+See [`DISCLAIMER`](DISCLAIMER) for details.
+
 ## Contribution
 
 Please feel free to fork the package and contribute by submitting a pull request to enhance the functionalities.
