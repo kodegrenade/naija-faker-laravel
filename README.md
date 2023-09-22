@@ -383,7 +383,7 @@ php artisan faker:generator
 composer test tests
 ```
 
-# Disclaimer :caution:
+## Disclaimer :caution
 See [`DISCLAIMER`](DISCLAIMER) for details.
 
 ## Contribution
