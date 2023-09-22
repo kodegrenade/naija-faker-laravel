@@ -85,13 +85,13 @@ This will generate a fake person data with yoruba names.
 
 ```object
 {
-  title: 'Engr.',
-  firstName: 'Akintunde',
-  lastName: 'Owoyele',
-  fullName: 'Akintunde Owoyele',
-  email: 'akintunde.owoyele@gmail.com',
-  phone: '+2349093636382',
-  address: '63, Ebubedike Uzoma Avenue, Awka'
+  "title": 'Engr.',
+  "firstName": 'Akintunde',
+  "lastName": 'Owoyele',
+  "fullName": 'Akintunde Owoyele',
+  "email": 'akintunde.owoyele@gmail.com',
+  "phone": '+2349093636382',
+  "address": '63, Ebubedike Uzoma Avenue, Awka'
 }
 ```
 
@@ -120,28 +120,28 @@ This will generate three (3) female fake persons with igbo names.
 ```bash
 [
   {
-    "title" => Dr.
-    "fullname" => Chinweuba Enyinnaya
-    "gender" => Female
-    "email" => chinweuba.enyinnaya@protonmail.com
-    "phone" => +2348088176205        
-    "address" => 86 Crescent Itu, Imo
+    "title" => "Dr."
+    "fullname" => "Chinweuba Enyinnaya"
+    "gender" => "Female"
+    "email" => "chinweuba.enyinnaya@protonmail.com"
+    "phone" => "+2348088176205"       
+    "address" => "86 Crescent Itu, Imo"
   },
   {
-    "title" => Prof.
-    "fullname" => Akachukwu Ndubisi
-    "gender" => Female
-    "email" => akachukwundubisi@yahoo.com
-    "phone" => +2349025762928
-    "address" => 199 Avenue Ilobu, Oyo
+    "title" => "Prof."
+    "fullname" => "Akachukwu Ndubisi"
+    "gender" => "Female"
+    "email" => "akachukwundubisi@yahoo.com"
+    "phone" => "+2349025762928"
+    "address" => "199 Avenue Ilobu, Oyo"
   },
   {
-    "title" => Mrs.
-    "fullname" => Ngozi Zeribe
-    "gender" => Female
-    "email" => ngozi.zeribe@gmail.com
-    "phone" => +2347034743668
-    "address" => 156 Crescent Bonny, Bayelsa
+    "title" => "Mrs."
+    "fullname" => "Ngozi Zeribe"
+    "gender" => "Female"
+    "email" => "ngozi.zeribe@gmail.com"
+    "phone" => "+2347034743668"
+    "address" => "156 Crescent Bonny, Bayelsa"
   }
 ]
 ```
