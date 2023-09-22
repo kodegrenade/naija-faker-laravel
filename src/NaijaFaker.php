@@ -30,18 +30,10 @@ class NaijaFaker extends Facade
   }
 
   /**
-   * @param {Object} options
-   */
-  public static function config()
-  {
-    # Load configuration data from config file
-  }
-
-  /**
    * Generates Fake Name
    * 
-   * @param string language
-   * @param string gender
+   * @param string $language
+   * @param string $gender
    * 
    * @return string
    */
@@ -49,10 +41,12 @@ class NaijaFaker extends Facade
   {
     $fullName = "";
 
+    $language = is_string($language) ? strtolower($language) : '';
     if (!in_array(strtolower($language), self::DEFAULT_LANGUAGES)) {
       $language = self::DEFAULT_LANGUAGES[array_rand(self::DEFAULT_LANGUAGES)];
     }
 
+    $gender = is_string($gender) ? strtolower($gender) : '';
     if (!in_array(strtolower($gender), self::DEFAULT_GENDER)) {
       $gender = self::DEFAULT_GENDER[array_rand(self::DEFAULT_GENDER)];
     }
@@ -74,26 +68,27 @@ class NaijaFaker extends Facade
   /**
    * Generates Fake Person Data
    * 
-   * @param string language
-   * @param string gender
+   * @param string $language
+   * @param string $gender
    * 
    * @return mixed
    */
   public static function person(string $language = null, string $gender = null): object
   {
-    if (!in_array(strtolower($language), self::DEFAULT_LANGUAGES)) {
+    $language = is_string($language) ? strtolower($language) : '';
+    if (!in_array($language, self::DEFAULT_LANGUAGES)) {
       $language = self::DEFAULT_LANGUAGES[array_rand(self::DEFAULT_LANGUAGES)];
     }
 
-    if (!in_array(strtolower($gender), self::DEFAULT_GENDER)) {
+    $gender = is_string($gender) ? strtolower($gender) : '';
+    if (!in_array($gender, self::DEFAULT_GENDER)) {
       $gender = self::DEFAULT_GENDER[array_rand(self::DEFAULT_GENDER)];
     }
 
-    $gender = strtolower($gender);
-    $fullName = self::name(strtolower($language), $gender);
+    $fullName = self::name($language, $gender);
 
     return (object)[
-      "title" => self::title(strtolower($gender)),
+      "title" => self::title($gender),
       "fullname" => $fullName,
       "gender" => ucfirst($gender),
       "email" => self::email($fullName),
@@ -105,29 +100,20 @@ class NaijaFaker extends Facade
   /**
    * Generates Fake People Data
    * 
-   * @param integer number
-   * @param string language
-   * @param string gender
+   * @param int $number
+   * @param string $language
+   * @param string $gender
    * 
    * @return array
    */
   public static function people(int $number = 5, string $language = null, string $gender = null): array
   {
-    if ($number && !is_int($number)) {
-      throw new \Exception("Value for number must be type of integer.");
-    }
-
-    if ($language && !is_string($language)) {
-      throw new \Exception("Value for language must be type of string.");
-    }
-
-    if ($gender && !is_string($gender)) {
-      throw new \Exception("Value for gender must be type of string.");
-    }
+    $language = is_string($language) ? strtolower($language) : '';
+    $gender = is_string($gender) ? strtolower($gender) : '';
 
     $people = [];
     for ($index = 0; $index < $number; $index++) {
-      $person = self::person(strtolower($language), strtolower($gender));
+      $person = self::person($language, $gender);
       array_push($people, $person);
     }
     return $people;
@@ -136,13 +122,14 @@ class NaijaFaker extends Facade
   /**
    * Generates Fake Title
    * 
-   * @param string gender
+   * @param string $gender
    * 
    * @return string
    */
   public static function title(string $gender = null): string
   {
-    if (!in_array(strtolower($gender), self::DEFAULT_GENDER)) {
+    $gender = is_string($gender) ? strtolower($gender) : '';
+    if (!in_array($gender, self::DEFAULT_GENDER)) {
       $gender = self::DEFAULT_GENDER[array_rand(self::DEFAULT_GENDER)];
     }
 
@@ -155,18 +142,18 @@ class NaijaFaker extends Facade
   /**
    * Generates Fake Email Address
    * 
-   * @param string name
-   * @param string extension
+   * @param string $name
+   * @param string $extension
    * 
    * @return string
    */
   public static function email(string $name, string $extension = null): string
   {
-    # do regex for custome extension to either be in the following format @name.com || name.com
     if (!$name) {
       throw new \Exception("Name is not provided.");
     }
 
+    $extension = is_string($extension) ? strtolower($extension) : '';
     if ($extension) $extension = preg_replace('/[^.a-zA-Z0-9]/', '', $extension);
 
     $loadLibrary = Library::getLibraryData("extensions");
@@ -209,13 +196,13 @@ class NaijaFaker extends Facade
   /**
    * Generates Fake Phone Number
    * 
-   * @param string network
+   * @param string $network
    * 
    * @return string
    */
   public static function phoneNumber(string $network = null): string
   {
-    $network = strtolower($network);
+    $network = is_string($network) ? strtolower($network) : '';
     if (!in_array($network, self::DEFAULT_NETWORKS)) {
       $network = self::DEFAULT_NETWORKS[array_rand(self::DEFAULT_NETWORKS)];
     }
