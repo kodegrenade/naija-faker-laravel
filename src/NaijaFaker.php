@@ -153,7 +153,7 @@ class NaijaFaker extends Facade
       throw new \Exception("Name is not provided.");
     }
 
-    $extension = is_string($extension) ? strtolower($extension) : '';
+    $extension = is_string($extension) ? strtolower($extension) : null;
     if ($extension) $extension = preg_replace('/[^.a-zA-Z0-9]/', '', $extension);
 
     $loadLibrary = Library::getLibraryData("extensions");
