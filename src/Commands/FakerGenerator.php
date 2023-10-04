@@ -40,7 +40,8 @@ class FakerGenerator extends Command
   {
     try {
       $generate = NaijaFaker::person();
-      $this->info($generate);
+      $output = print_r($generate, true);
+      $this->info($output);
     } catch (\Exception $e) {
       $this->error("Error:: {$e->getMessage()}");
     }
