@@ -9,8 +9,6 @@
  * file that was distributed with this source code.
 */
 
-# @Todo; group lgas into states and call also get all or by state 
-
 return [
   "Aba North",
   "Aba South",
@@ -574,10 +572,14 @@ return [
   "Ado-Odo/Ota",
   "Egbado North",
   "Egbado South",
-  "Ewekoro", "2664",
-  "Ifo", "2664",
-  "Ijebu East", "2664",
-  "Ijebu North", "2664",
+  "Ewekoro",
+  "2664",
+  "Ifo",
+  "2664",
+  "Ijebu East",
+  "2664",
+  "Ijebu North",
+  "2664",
   "Ijebu North East",
   "Ijebu Ode",
   "Ikenne",

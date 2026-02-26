@@ -1,0 +1,90 @@
+<?php
+
+/*
+ * This file is part of the Laravel NaijaFaker package.
+ *
+ * (c) Temitope Ayotunde <brhamix@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+*/
+
+return [
+  'suffixes' => [
+    'Ltd',
+    'Plc',
+    '& Sons',
+    'Group',
+    'Nigeria Limited',
+    '& Co',
+    'Enterprises',
+    'Industries',
+    'Holdings',
+    'Services',
+    'Solutions',
+    'Ventures',
+    'International',
+  ],
+  'prefixes' => [
+    'Pan-African',
+    'First',
+    'United',
+    'National',
+    'Royal',
+    'Golden',
+    'Atlantic',
+    'Continental',
+    'Premier',
+    'Diamond',
+    'Emerald',
+    'Sterling',
+    'Pacific',
+    'Global',
+    'Allied',
+    'Zenith',
+    'Prime',
+    'Heritage',
+    'Pinnacle',
+    'Apex',
+  ],
+  'nouns' => [
+    'Resources',
+    'Systems',
+    'Technologies',
+    'Logistics',
+    'Consulting',
+    'Properties',
+    'Energy',
+    'Capital',
+    'Foods',
+    'Agro',
+    'Construction',
+    'Communications',
+    'Trading',
+    'Petroleum',
+    'Pharma',
+    'Marine',
+    'Motors',
+    'Textiles',
+    'Finance',
+    'Digital',
+  ],
+  'industries' => [
+    'Technology',
+    'Oil & Gas',
+    'Banking & Finance',
+    'Agriculture',
+    'Telecommunications',
+    'Real Estate',
+    'Manufacturing',
+    'Healthcare',
+    'Education',
+    'Transportation & Logistics',
+    'Construction',
+    'Retail & FMCG',
+    'Entertainment & Media',
+    'Mining',
+    'Insurance',
+    'Hospitality & Tourism',
+  ],
+];
