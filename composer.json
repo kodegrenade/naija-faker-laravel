@@ -35,6 +35,7 @@
   },
   "description": "A Laravel faker library to generate typical Nigeria fake data ranging from name, address, phone number, LGAs and states for you. It supports Yoruba, Igbo, and Hausa ethnic groups with culturally authentic data.",
   "require-dev": {
+    "php": ">=8.2",
     "phpunit/phpunit": "^8.4|^10.0",
     "illuminate/support": "^11.0@dev",
     "pestphp/pest": "2.x-dev",
