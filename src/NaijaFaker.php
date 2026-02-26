@@ -114,7 +114,7 @@ class NaijaFaker extends Facade
   }
 
   /**
-   * Unsigned right shift for 32-bit values (equivalent to >>> in JS).
+   * Unsigned right shift for 32-bit values
    */
   private static function rshift32(int $n, int $bits): int
   {
@@ -123,7 +123,6 @@ class NaijaFaker extends Facade
 
   /**
    * 32-bit multiplication that avoids overflow on 64-bit PHP.
-   * Equivalent to Math.imul() in JS.
    */
   private static function mul32(int $a, int $b): int
   {
@@ -300,7 +299,6 @@ class NaijaFaker extends Facade
     $number = self::_randomInt(1, 200);
     $addressType = self::_randomElement($addressTypes);
 
-    // Use locale-matching name like JS does
     $langMap = ['east' => 'igbo', 'west' => 'yoruba', 'south' => 'igbo', 'north' => 'hausa'];
     $addressName = self::name($langMap[$addressLocale] ?? null);
 
