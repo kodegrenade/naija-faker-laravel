@@ -384,7 +384,7 @@ composer test tests
 ```
 
 ## Disclaimer :warning:
-See [`DISCLAIMER`](DISCLAIMER) for details.
+See [`DISCLAIMER`](DISCLAIMER.md) for details.
 
 ## Contribution
 
