@@ -19,7 +19,13 @@ class Library
     'location',
     'names',
     'numbers',
-    'title'
+    'title',
+    'financial',
+    'geo',
+    'vehicles',
+    'company',
+    'education',
+    'personal',
   ];
 
   static function getLibraryData($provider)

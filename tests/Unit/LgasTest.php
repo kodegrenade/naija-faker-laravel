@@ -2,7 +2,12 @@
 
 use Kodegrenade\NaijaFaker\NaijaFaker;
 
-test('all lgas are returned', function () {
+test('lgas returns non-empty array', function () {
   $lgas = NaijaFaker::lgas();
-  expect($lgas)->toBeArray();
+  expect($lgas)->toBeArray()->not->toBeEmpty();
+});
+
+test('lgas contains Ikeja', function () {
+  $lgas = NaijaFaker::lgas();
+  expect($lgas)->toContain('Ikeja');
 });

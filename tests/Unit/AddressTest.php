@@ -2,7 +2,12 @@
 
 use Kodegrenade\NaijaFaker\NaijaFaker;
 
-test('address', function () {
+test('address returns non-empty string', function () {
   $address = NaijaFaker::address();
-  expect($address)->toBeString();
+  expect($address)->toBeString()->not->toBeEmpty();
+});
+
+test('address contains comma separator', function () {
+  $address = NaijaFaker::address();
+  expect($address)->toContain(',');
 });
