@@ -2,9 +2,9 @@
 
 ## Introduction 👋
 
-This is a simple package that generates fake typical Nigerian data ranging from `name`, `address`, `phone number`, `lgas` and `states`. This can be used mostly for generating fake data for your application.
+A comprehensive package that generates fake, culturally authentic Nigerian data — names, addresses, phone numbers, bank accounts, universities, companies, and much more. Supports three major ethnic groups: **Yoruba**, **Igbo**, and **Hausa**.
 
-> NB: Nigeria as a country has some many languages. `Yoruba`, `Igbo` and `Hausa` are the only languages supported at the moment.
+> NB: Nigeria as a country has so many languages. `Yoruba`, `Igbo` and `Hausa` are the only languages supported at the moment.
 
 ## Installation
 
@@ -22,16 +22,11 @@ Add service provider to the `config/app.php` file
   |--------------------------------------------------------------------------
   | Autoloaded Service Providers
   |--------------------------------------------------------------------------
-  |
-  | The service providers listed here will be automatically loaded on the
-  | request to your application. Feel free to add your own services to
-  | this array to grant expanded functionality to your applications.
-  |
   */
 
   'providers' => [
     ...
-    Kodegrenade\NaijaFaker\OtpServiceProvider::class,
+    Kodegrenade\NaijaFaker\NaijaFakerServiceProvider::class,
   ];
 ...
 ```
@@ -39,17 +34,6 @@ Add service provider to the `config/app.php` file
 Add alias to the `config/app.php` file
 
 ```php
-  /*
-  |--------------------------------------------------------------------------
-  | Class Aliases
-  |--------------------------------------------------------------------------
-  |
-  | This array of class aliases will be registered when this application
-  | is started. However, feel free to register as many as you wish as
-  | the aliases are "lazy" loaded so they don't hinder performance.
-  |
-  */
-
   'aliases' => [
     ...
     'NaijaFaker' => Kodegrenade\NaijaFaker\NaijaFaker::class,
@@ -59,203 +43,127 @@ Add alias to the `config/app.php` file
 
 ## Usage 🧨
 
->**NOTE**<br>
-> Response are returned as objects or array depending on the method used.
+> **NOTE**
+> All methods return associative arrays or strings.
+
+---
+
+### Seeded / Deterministic Mode
+
+Set a seed for reproducible output (useful for testing):
+
+```php
+<?php
+
+NaijaFaker::seed(12345);
+$name1 = NaijaFaker::name(); // always the same
+
+NaijaFaker::seed(null); // reset to random mode
+```
+
+### Configuration
+
+Set default language, gender, or network:
+
+```php
+<?php
+
+NaijaFaker::config([
+  'language' => 'yoruba',
+  'gender' => 'male',
+  'network' => 'mtn',
+]);
+```
+
+---
 
 ### Person
 
-Generate fake person data by calling the `person` faker method.
+Generate fake person data.
 
 ```php
 <?php
 
 NaijaFaker::person(string $language, string $gender);
 ```
-* `$language (optional | default = random value)`: The language of the fake person's data to be generated.
-* `$gender (optional | default = random value)`: The gender of the person's data to be generate.
 
 #### Sample
 ```php
-<?php
-
 $person = NaijaFaker::person('yoruba', 'male');
 ```
 
-This will generate a fake person data with yoruba names.
-
-```object
-{
-  "title": 'Engr.',
-  "firstName": 'Akintunde',
-  "lastName": 'Owoyele',
-  "fullName": 'Akintunde Owoyele',
-  "email": 'akintunde.owoyele@gmail.com',
-  "phone": '+2349093636382',
-  "address": '63, Ebubedike Uzoma Avenue, Awka'
-}
+```php
+[
+  'title' => 'Engr.',
+  'firstName' => 'Akintunde',
+  'lastName' => 'Owoyele',
+  'fullName' => 'Akintunde Owoyele',
+  'email' => 'akintunde.owoyele@gmail.com',
+  'phone' => '+2349093636382',
+  'address' => 'Plot 63, Ebubedike Uzoma Avenue, Awka',
+]
 ```
 
 ### People
 
-Generate fake people data by calling the `people` faker method.
+Generate multiple fake people.
 
 ```php
 <?php
 
-NaijaFaker::people(int $number = 5, string $language, string $gender);
-```
-
-* `$number (optional | default = 5)`: The number of person's to be added to the people list. 
-* `$language (optional | default = random value)`: The language of the fake persons data to be generated in the people list.
-* `$gender (optional | default = random value)`: The gender of the people to be generate.
-
-#### Sample
-```php
-<?php
-
-$people = NaijaFaker::people(3, 'igbo', 'female');
-```
-
-This will generate three (3) female fake persons with igbo names.
-```bash
-[
-  {
-    "title" => "Dr."
-    "fullname" => "Chinweuba Enyinnaya"
-    "gender" => "Female"
-    "email" => "chinweuba.enyinnaya@protonmail.com"
-    "phone" => "+2348088176205"       
-    "address" => "86 Crescent Itu, Imo"
-  },
-  {
-    "title" => "Prof."
-    "fullname" => "Akachukwu Ndubisi"
-    "gender" => "Female"
-    "email" => "akachukwundubisi@yahoo.com"
-    "phone" => "+2349025762928"
-    "address" => "199 Avenue Ilobu, Oyo"
-  },
-  {
-    "title" => "Mrs."
-    "fullname" => "Ngozi Zeribe"
-    "gender" => "Female"
-    "email" => "ngozi.zeribe@gmail.com"
-    "phone" => "+2347034743668"
-    "address" => "156 Crescent Bonny, Bayelsa"
-  }
-]
+NaijaFaker::people(int $count = 10, string $language, string $gender);
 ```
 
 ### Name
 
-Generate fake name.
-
-```php
-<?php
-
-NaijaFaker::name(string $language, string $gender);
-```
-* `$language (optional | default = random value)`: The language of the fake name to be generated.
-* `$gender (optional | default = random value)`: The gender of the name to be generated.
-
-#### Sample
+Generate a fake name.
 
 ```php
 <?php
 
 $name = NaijaFaker::name('hausa', 'male');
-```
-
-This will generate fake male Hausa name.
-```bash
-Ahmed Maikudi
+// => "Ahmed Maikudi"
 ```
 
 ### Title
 
-Generate fake title.
+Generate a fake Nigerian title.
 
 ```php
 <?php
 
-NaijaFaker::title(string $gender);
-```
-
-* `$gender (optional | default = random value)`: The gender of the title to be generated.
-
-#### Sample
-
-```php
-<?php
-
-$name = NaijaFaker::title('male');
-```
-
-This will generate fake male title.
-```bash
-Mr.
+$title = NaijaFaker::title('male');
+// => "Chief"
 ```
 
 ### Email Address
 
-Generate fake email address.
+Generate a fake email address.
 
 ```php
 <?php
 
-NaijaFaker::email(string $name, string $extension);
-```
-
-* `$name`: The name of the email address to be generated.
-* `$extension (optional | default = random value)`: The domain extension of the email address.
-
-#### Sample
-
-```php
-<?php
-
-# without domain extension
 $email = NaijaFaker::email('Temitope Ayotunde');
+// => "temitope.ayotunde@gmail.com"
 
-# with domain extension
 $email = NaijaFaker::email('Temitope Ayotunde', 'workplace.com');
-```
-
-This will generate fake email address.
-```bash
-# without extenstion
-temitopeayotunde@hotmail.com
-
-# with extension
-temitopeayotunde@workplace.com
+// => "temitopeayotunde@workplace.com"
 ```
 
 ### Address
 
-Generate fake house address.
-
-```php
-<?php
-
-NaijaFaker::address();
-```
-
-#### Sample
+Generate a fake Nigerian address.
 
 ```php
 <?php
 
 $address = NaijaFaker::address();
-```
-
-This will generate fake email address.
-```bash
-188 Crescent Bori City, Enugu
+// => "Plot 45, Oluwaseun Adedayo Street, Ibadan"
 ```
 
 ### Phone Number
 
-Generate phone number.
+Generate a fake Nigerian phone number.
 
 ```php
 <?php
@@ -263,111 +171,230 @@ Generate phone number.
 NaijaFaker::phoneNumber(string $network);
 ```
 
-* `$network (optional | default = random value)`: The network of the phone number to be generated.
+> **NOTE**: Supported networks are `mtn`, `glo`, `9mobile` & `airtel`
 
->**NOTE**<br>
-> Supported networks are `Mtn`, `Glo`, `9mobile` & `Airtel`
+```php
+$phone = NaijaFaker::phoneNumber('mtn');
+// => "+2347037653761"
+```
 
-#### Sample
+### States & LGAs
 
 ```php
 <?php
 
-$email = NaijaFaker::phoneNumber('mtn');
+$states = NaijaFaker::states(); // all 37 Nigerian states
+$lgas = NaijaFaker::lgas();     // all 774 LGAs
 ```
 
-This will generate phone number.
+### Identity & Financial
 
-```bash
-+2347037653761
+#### BVN (Bank Verification Number)
+```php
+$bvn = NaijaFaker::bvn();
+// => "22345678901"
 ```
 
-### States
+#### NIN (National Identification Number)
+```php
+$nin = NaijaFaker::nin();
+// => "12345678901"
+```
 
-Generate nigerian states.
+#### Bank Account
+```php
+$account = NaijaFaker::bankAccount();
+// => ['bankName' => 'Access Bank', 'bankCode' => '044', 'accountNumber' => '1234567890']
+
+$account = NaijaFaker::bankAccount('Zenith Bank');
+// => ['bankName' => 'Zenith Bank', 'bankCode' => '057', 'accountNumber' => '0987654321']
+```
+
+---
+
+### Geographic Consistency
+
+Generate persons where **name ethnicity, state, and LGA all match geographically**.
+
+#### Consistent Person
+```php
+$person = NaijaFaker::consistentPerson('yoruba', 'male');
+```
 
 ```php
-<?php
-
-NaijaFaker::states();
-```
-
-#### Sample
-
-```php
-<?php
-
-$states = NaijaFaker::states();
-```
-
-This will return all the Nigerian states.
-
-```bash
 [
-  "Abia",
-  "Adamawa",
-  "Akwa Ibom",
-  "Anambra",
-  "Bauchi",
-  "Bayelsa",
-  "Benue",
-  "Borno",
-  "Cross River",
-  "Delta",
-  "Ebonyi",
-  ...
+  'title' => 'Chief',
+  'firstName' => 'Adebayo',
+  'lastName' => 'Ogunlesi',
+  'fullName' => 'Adebayo Ogunlesi',
+  'email' => 'adebayo.ogunlesi@gmail.com',
+  'phone' => '+2348031234567',
+  'address' => 'Plot 45, Oluwaseun Adedayo Street, Ibadan',
+  'state' => 'Oyo',        // matches Yoruba region
+  'lga' => 'Ibadan North',  // belongs to Oyo state
 ]
 ```
 
-### LGAs
-
-Generate Nigerian Local Government Areas.
-
+#### Consistent People
 ```php
-<?php
-
-NaijaFaker::lgas();
+$people = NaijaFaker::consistentPeople(5, 'igbo', 'female');
 ```
 
-#### Sample
+---
 
+### Records
+
+#### License Plate
 ```php
-<?php
-
-$states = NaijaFaker::lgas();
+$plate = NaijaFaker::licensePlate();         // => "KAN-234XY"
+$plate = NaijaFaker::licensePlate('Lagos');   // => "LAG-567AB"
 ```
 
-This will return all the Nigerian Local Government Areas.
+#### Company
+```php
+$company = NaijaFaker::company();
+// => ['name' => 'Pan-African Technologies Ltd', 'rcNumber' => 'RC-456789', 'industry' => 'Technology']
+```
 
-```bash
+#### University
+```php
+$uni = NaijaFaker::university();
+// => ['name' => 'University of Lagos', 'abbreviation' => 'UNILAG', 'state' => 'Lagos', 'type' => 'federal']
+```
+
+#### Education Record
+```php
+$edu = NaijaFaker::educationRecord('yoruba');
+// => ['university' => 'University of Ibadan', 'abbreviation' => 'UI', 'degree' => 'B.Sc', 'course' => 'Computer Science', 'graduationYear' => 2019]
+```
+
+#### Work Record
+```php
+$work = NaijaFaker::workRecord();
+// => ['company' => 'Global Finance Holdings', 'position' => 'Software Engineer', 'industry' => 'Technology', 'startYear' => 2020]
+```
+
+#### Vehicle Record
+```php
+$vehicle = NaijaFaker::vehicleRecord('Lagos');
+// => ['licensePlate' => 'LAG-234XY', 'make' => 'Toyota', 'model' => 'Corolla', 'year' => 2021, 'color' => 'Silver']
+```
+
+---
+
+### Personal Data
+
+#### Date of Birth
+```php
+$dob = NaijaFaker::dateOfBirth();
+// => ['date' => '1990-03-15', 'age' => 35]
+
+$dob = NaijaFaker::dateOfBirth(['minAge' => 25, 'maxAge' => 40]);
+```
+
+#### Marital Status
+```php
+$status = NaijaFaker::maritalStatus();
+// => "Married"
+```
+
+#### Blood Group & Genotype
+```php
+$bg = NaijaFaker::bloodGroup();  // => "O+"
+$gt = NaijaFaker::genotype();    // => "AA"
+```
+
+#### Salary
+```php
+$salary = NaijaFaker::salary();
+// => ['amount' => 450000, 'currency' => 'NGN', 'level' => 'mid', 'frequency' => 'monthly']
+
+$salary = NaijaFaker::salary(['level' => 'senior']);
+```
+
+#### Next of Kin
+```php
+$kin = NaijaFaker::nextOfKin('yoruba', 'female');
+// => ['fullName' => 'Folake Adeyemi', 'relationship' => 'Sister', 'phone' => '+234...', 'address' => '...']
+```
+
+---
+
+### Detailed Person
+
+Generate a **complete identity** with person, personal data, education, work, and vehicle all in one call:
+
+```php
+$person = NaijaFaker::detailedPerson('yoruba', 'male');
+```
+
+```php
 [
-  "Aba North",
-  "Aba South",
-  "Arochukwu",
-  "Bende",
-  "Ikwuano",
-  "Isiala Ngwa North",
-  "Isiala Ngwa South",
-  "Isuikwuato",
-  "Obi Ngwa",
-  "Ohafia",
-  "Osisioma",
-  "Ugwunagbo",
-  "Ukwa East",
-  "Ukwa West",
-  "Umuahia North",
-  "Umuahia South",
-  "Umu Nneochi",
-  "Demsa",
-  "Fufure",
-  "Ganye",
-  "Gayuk",
-  "Gombi",
-  "Grie",
-  "Hong",
-  ...
+  // Person
+  'title' => 'Chief',
+  'firstName' => 'Adebayo',
+  'lastName' => 'Ogunlesi',
+  'fullName' => 'Adebayo Ogunlesi',
+  'email' => 'adebayo.ogunlesi@gmail.com',
+  'phone' => '+2348031234567',
+  'address' => 'Plot 45, Oluwaseun Street, Ibadan',
+  'state' => 'Oyo',
+  'lga' => 'Ibadan North',
+  // Personal
+  'dateOfBirth' => ['date' => '1990-03-15', 'age' => 35],
+  'maritalStatus' => 'Married',
+  'bloodGroup' => 'O+',
+  'genotype' => 'AA',
+  'salary' => ['amount' => 450000, 'currency' => 'NGN', 'level' => 'mid', 'frequency' => 'monthly'],
+  'nextOfKin' => ['fullName' => 'Folake Adeyemi', 'relationship' => 'Spouse', 'phone' => '...', 'address' => '...'],
+  // Records
+  'education' => ['university' => 'University of Ibadan', 'abbreviation' => 'UI', 'degree' => 'B.Sc', 'course' => 'Computer Science', 'graduationYear' => 2019],
+  'work' => ['company' => 'Pan-African Solutions Ltd', 'position' => 'Software Engineer', 'industry' => 'Technology', 'startYear' => 2020],
+  'vehicle' => ['licensePlate' => 'OYO-234XY', 'make' => 'Toyota', 'model' => 'Corolla', 'year' => 2021, 'color' => 'Silver'],
 ]
 ```
+
+```php
+$people = NaijaFaker::detailedPeople(5, 'igbo');
+```
+
+---
+
+### Export
+
+Export generated data as **JSON** or **CSV**:
+
+```php
+$json = NaijaFaker::export('person', 10, 'json');
+$csv = NaijaFaker::export('detailedPerson', 5, 'csv');
+$csv = NaijaFaker::export('consistentPerson', 10, 'csv');
+```
+
+CSV output uses **dot notation** for nested fields (e.g., `education.university`, `salary.amount`).
+
+---
+
+### Custom Providers
+
+Register your own data generators:
+
+```php
+// Register
+NaijaFaker::registerProvider('religion', function ($faker) {
+  $religions = ['Christianity', 'Islam', 'Traditional'];
+  return $religions[array_rand($religions)];
+});
+
+// Use
+NaijaFaker::generate('religion'); // => "Islam"
+
+// List all registered
+NaijaFaker::listProviders(); // => ['religion']
+```
+
+> **NOTE**: Custom providers cannot override built-in methods.
+
+---
 
 ### Quick Usage
 

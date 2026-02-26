@@ -2,7 +2,17 @@
 
 use Kodegrenade\NaijaFaker\NaijaFaker;
 
-test('all states are returned', function () {
+test('states returns non-empty array', function () {
   $states = NaijaFaker::states();
-  expect($states)->toBeArray();
+  expect($states)->toBeArray()->not->toBeEmpty();
+});
+
+test('states contains Lagos', function () {
+  $states = NaijaFaker::states();
+  expect($states)->toContain('Lagos');
+});
+
+test('states contains FCT', function () {
+  $states = NaijaFaker::states();
+  expect($states)->toContain('FCT (Abuja)');
 });
